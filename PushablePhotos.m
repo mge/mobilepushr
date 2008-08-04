@@ -13,6 +13,7 @@
 #import <CoreGraphics/CGColor.h>
 #import <CoreGraphics/CGColorSpace.h>
 #import <UIKit/UIKit.h>
+#import <UIKit/UIColor.h>
 
 #import "MobilePushr.h"
 #import "Flickr.h"
@@ -27,9 +28,7 @@
 	if (![super initWithFrame: frame])
 		return nil;
 
-	float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	struct CGColor *whiteColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), color);
-	[self setBackgroundColor: whiteColor];
+	[self setBackgroundColor: [UIColor whiteColor]];
 
 	_pushr = [pushr retain];
 	_mainWindow = window;
@@ -114,8 +113,7 @@
 - (int)swipe: (int)type withEvent: (struct __GSEvent *)event
 {
 	if ((4 == type) || (8 == type)) {
-		struct CGRect rect = GSEventGetLocationInWindow(event);
-		CGPoint point = CGPointMake(rect.origin.x, rect.origin.y - 44.0f);
+		CGPoint point = CGPointMake(GSEventGetLocationInWindow(event).x, GSEventGetLocationInWindow(event).y - 44.0f);
 		CGPoint offset = _startOffset; 
 
 		point.x += offset.x;
@@ -161,6 +159,8 @@
 {
 	if (row < [_photos count])
 		return YES;
+	else
+		return NO;
 }
 
 - (BOOL)table: (UITable *)table canSelectRow: (int)row

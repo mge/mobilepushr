@@ -29,7 +29,8 @@
 #import <UIKit/UIView-Hierarchy.h>
 #import <UIKit/UIView-Rendering.h>
 #import <UIKit/UIThreePartButton.h>
-#import <UIKit/UIThreePartImageView.h>
+#import <UIKit/UIFont.h>
+#import <UIKit/UIColor.h>
 
 #import "MobilePushr.h"
 #import "PushrNetUtil.h"
@@ -192,28 +193,24 @@ typedef enum {
 	[mainView addSubview: topBar];
 
 	UINavigationItem *topBarTitle = [[UINavigationItem alloc] initWithTitle: @"Pushr"];
-	GSFontRef titleFont = GSFontCreateWithName("Helvetica", kGSFontTraitBold, 24.0f);
-	[topBarTitle setFont: titleFont];
-	CFRelease(titleFont);
+	[topBarTitle setFont: [UIFont fontWithName: @"Helvetica-Bold" size: 24.0f]];                                                                                       
 
-	struct CGRect botBarRect = CGRectMake(0.0f, (appRect.size.height - 96.0f), appRect.size.width, 96.0f);
-	UIThreePartImageView *bottomBar = [[UIThreePartImageView alloc] initWithFrame: botBarRect];
-	[bottomBar setImage: [UIImage imageNamed: @"bottombar.png"]];
-	CDAnonymousStruct4 barSlices = {
-		.left   = { .origin = { .x =  0.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
-		.middle = { .origin = { .x =  2.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
-		.right  = { .origin = { .x =  4.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
-	};
-	[bottomBar setSlices: barSlices];
-	[mainView addSubview: bottomBar];
+        struct CGRect botBarRect = CGRectMake(0.0f, (appRect.size.height - 96.0f), appRect.size.width, 96.0f);
+        id *bottomBar = [[NSClassFromString(@"UIThreePartImageView") alloc] initWithFrame: botBarRect];
+        [bottomBar setImage: [UIImage imageNamed: @"bottombar.png"]];
+        CDAnonymousStruct4 barSlices = {
+                .left   = { .origin = { .x =  0.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
+                .middle = { .origin = { .x =  2.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
+                .right  = { .origin = { .x =  4.0f, .y = 0.0f }, .size = { .width = 2.0f, .height = 96.0f } },
+        };
+        [bottomBar setSlices: barSlices];
+        [bottomBar setAlpha: 0.75f];
+        [mainView addSubview: bottomBar];
+
 
 	_button = [[[UIThreePartButton alloc] initWithTitle: @"Push to Flickr" autosizesToFit: YES] autorelease];
+	[_button setTitleFont: [UIFont fontWithName: @"Helvetica-Bold" size: 22.0f]];
 
-	GSFontRef buttonFont = GSFontCreateWithName("Helvetica", kGSFontTraitBold, 22.0f);
-	[_button setTitleFont: buttonFont];
-	CFRelease(buttonFont);
-
-	float blackColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	struct CGRect buttonRect = CGRectMake(20.0f, (appRect.size.height - 74.0f), appRect.size.width - 40.0f, 52.0f);
 	[_button setFrame: buttonRect];
 	[_button setPressedBackgroundImage: [UIImage imageNamed: @"mainbutton_pressed.png"]];
@@ -229,7 +226,7 @@ typedef enum {
 
 	[_button setBackgroundSlices: buttonPieces];
 
-	[_button setShadowColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(), blackColor)];
+	[_button setShadowColor: [UIColor blackColor]];
 	[_button setShadowOffset: -1.0f];
 	[_button setDrawsShadow: YES];
 
@@ -247,7 +244,6 @@ typedef enum {
 	[UIView endAnimations];
 	[topBar release];
 	[topBarTitle release];
-	[bottomBar release];
 	[mainView release];
 	_thumbnailView = nil;
 }
@@ -262,17 +258,14 @@ typedef enum {
 	[_button setEnabled: NO];
 	[_button setBackgroundImage: [UIImage imageNamed: @"mainbutton_inactive.png"]];
 	id mainView = [_button superview];
-	float blackColor[4] = { 0.0f, 0.0f, 0.0f, 0.9f };
-	float transparent[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	float white[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	_shade = [[UIView alloc] initWithFrame: [mainView frame]];
-	[_shade setBackgroundColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(), blackColor)];
+	[_shade setBackgroundColor: [UIColor blackColor]];
 	[mainView addSubview: _shade];
 	struct CGRect hwRect = [UIHardware fullScreenApplicationContentRect];
 	_label = [[UITextLabel alloc] initWithFrame: CGRectMake(hwRect.origin.x + 20.0f, hwRect.origin.y + 60.0f, hwRect.size.width - 40.0f, 20.0f)];
 	[_label setText: @"Please Wait"];
-	[_label setBackgroundColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(), transparent)];
-	[_label setColor: CGColorCreate(CGColorSpaceCreateDeviceRGB(), white)];
+	[_label setBackgroundColor: [UIColor clearColor]];
+	[_label setColor: [UIColor whiteColor]];
 	[_label setCentersHorizontally: YES];
 	[_shade addSubview: _label];
 

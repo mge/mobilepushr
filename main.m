@@ -13,7 +13,7 @@
 int main(int argc, char **argv)
 {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	int ret = UIApplicationMain(argc, argv, [MobilePushr class]);
+	int ret = UIApplicationMain(argc, argv, @"MobilePushr", @"MobilePushr");
 	[pool release];
 	return ret;
 }
