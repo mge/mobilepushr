@@ -4,7 +4,7 @@
  *
  * Author: Chris Lee <clee@mg8.org>
  * License: GPL v2 <http://www.opensource.org/licenses/gpl-license.php>
-*/  
+ */  
 
 #import <Foundation/Foundation.h>
 #import <openssl/md5.h>

@@ -12,12 +12,12 @@
 
 @interface PushrGlobalTags : NSObject
 {
-	MobilePushr *_pushr;
-	UIWindow *_mainWindow;
-	UINavigationBar *_navBar;
-	UIView *_prefView, *_tagsView;
-	UIPreferencesTable *_tagsTable, *_prefTable;
-	NSArray *_availableTags;
+    MobilePushr *_pushr;
+    UIWindow *_mainWindow;
+    UINavigationBar *_navBar;
+    UIView *_prefView, *_tagsView;
+    UIPreferencesTable *_tagsTable, *_prefTable;
+    NSArray *_availableTags;
 }
 
 - (id)initFromWindow: (UIWindow *)window withPushr: (MobilePushr *)pushr withView: (UIView *)view withTable: (UIPreferencesTable *)table;
@@ -27,12 +27,12 @@
 @interface PushrGlobalPrivacy : NSObject
 
 {
-	MobilePushr *_pushr;
-	UIWindow *_mainWindow;
-	UINavigationBar *_navBar;
-	UIView *_prefView, *_privacyView;
-	UIPreferencesTable *_privacyTable, *_prefTable;
-	NSArray *_availablePrivacy;
+    MobilePushr *_pushr;
+    UIWindow *_mainWindow;
+    UINavigationBar *_navBar;
+    UIView *_prefView, *_privacyView;
+    UIPreferencesTable *_privacyTable, *_prefTable;
+    NSArray *_availablePrivacy;
 }
 
 - (id)initFromWindow: (UIWindow *)window withPushr: (MobilePushr *)pushr withView: (UIView *)view withTable: (UIPreferencesTable *)table;
@@ -41,12 +41,12 @@
 
 @interface PushrSettings : NSObject
 {
-	MobilePushr *_pushr;
-	UINavigationBar *_navBar;
-	UIWindow *_mainWindow;
-
-	UIView *_prefView, *_photoView;
-	UIPreferencesTable *_prefTable;
+    MobilePushr *_pushr;
+    UINavigationBar *_navBar;
+    UIWindow *_mainWindow;
+    
+    UIView *_prefView, *_photoView;
+    UIPreferencesTable *_prefTable;
 }
 
 - (id)initFromWindow: (UIWindow *)window withPushr: (MobilePushr *)pushr;

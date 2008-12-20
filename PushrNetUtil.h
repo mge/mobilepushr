@@ -12,8 +12,8 @@
 
 @interface PushrNetUtil : NSObject
 {
-	MobilePushr *_pushr;
-	NSMutableArray *_activeInterfaceNames;
+    MobilePushr *_pushr;
+    NSMutableArray *_activeInterfaceNames;
 }
 
 - (id)initWithPushr: (MobilePushr *)pushr;

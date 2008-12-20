@@ -36,8 +36,8 @@
 
 @interface Flickr : NSObject
 {
-	MobilePushr *_pushr;
-	NSUserDefaults *_settings;
+    MobilePushr *_pushr;
+    NSUserDefaults *_settings;
 }
 
 - (id)initWithPushr: (MobilePushr *)pushr;

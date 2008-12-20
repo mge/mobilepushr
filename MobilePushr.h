@@ -19,16 +19,16 @@
 
 @interface MobilePushr: UIApplication
 {
-	PushrNetUtil *_netUtil;
-	NSUserDefaults *_settings;
-	Flickr *_flickr;
-	PushablePhotos *_pushablePhotos;
-	UIThreePartButton *_button;
-	UITextLabel *_label;
-	UIProgressBar *_progress;
-	UIImageView *_thumbnailView;
-	UIView *_shade;
-	UIWindow *_window;
+    PushrNetUtil *_netUtil;
+    NSUserDefaults *_settings;
+    Flickr *_flickr;
+    PushablePhotos *_pushablePhotos;
+    UIThreePartButton *_button;
+    UITextLabel *_label;
+    UIProgressBar *_progress;
+    UIImageView *_thumbnailView;
+    UIView *_shade;
+    UIWindow *_window;
 }
 
 - (NSArray *)cameraRollPhotos;
