@@ -1,9 +1,12 @@
-CC = arm-apple-darwin9-gcc
-LD = $(CC)
-LDID = /usr/bin/ldid
+CCROOT=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
+SYSROOT=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk
 
-CFLAGS = -Wall -Wno-unused -std=c99 -I/var/include -I/usr/include/libxml2
-LDFLAGS = -lxml2 -lobjc -framework CoreFoundation -framework CFNetwork -framework Foundation -framework UIKit -multiply_defined suppress -framework GraphicsServices -framework CoreGraphics -framework OfficeImport -L"/usr/lib" -F"/System/Library/Frameworks" -F"/System/Library/PrivateFrameworks" -bind_at_load
+CC=$(CCROOT)/arm-apple-darwin9-g++-4.0.1
+CODESIGN_ALLOCATE=$(CCROOT)/codesign_allocate
+
+LDFLAGS= -lobjc -framework Foundation -framework CoreFoundation -framework UIKit -framework CFNetwork -multiply_defined suppress  -L$(SYSROOT)/usr/lib -F$(SYSROOT)/System/Library/Frameworks
+CFLAGS=-Wall -Werror -Wno-unused -std=c99 -isysroot $(SYSROOT) 
+
 RESOURCES = Info.plist Default.png bottombar.png icon.png mainbutton.png mainbutton_pressed.png mainbutton_inactive.png
 
 all: MobilePushr sign package
@@ -15,12 +18,12 @@ MobilePushr: main.o MobilePushr.o FlickrCategory.o Flickr.o PushablePhotos.o Pus
 
 %.o: %.m
 	@echo "Compiling $<... "
-	@$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+	@$(CC) -c $(CFLAGS) $< -o $@
 	@echo "done."
 
 sign: MobilePushr
 	@echo "Signing $<... "
-	@$(LDID) -S $<
+	@CODESIGN_ALLOCATE=$(CODESIGN_ALLOCATE) codesign -fs "iPhone Developer: Chris Lee"  $<
 	@echo "done."
 
 package: sign
