@@ -13,10 +13,10 @@
 
 @interface PushablePhotos : UIView
 {
-	PushablePhotosTable *_table;
-	NSArray *_photoList;
-	MobilePushr *_pushr;
-	UIWindow *_mainWindow;
+    PushablePhotosTable *_table;
+    NSArray *_photoList;
+    MobilePushr *_pushr;
+    UIWindow *_mainWindow;
 }
 
 - (id)initWithFrame: (struct CGRect)frame application: (MobilePushr *)pushr inWindow: (UIWindow *)window;
@@ -28,9 +28,9 @@
 
 @interface PushablePhotosTable : UITable
 {
-	NSMutableArray *_photos;
-	MobilePushr *_pushr;
-	UIWindow *_mainWindow;
+    NSMutableArray *_photos;
+    MobilePushr *_pushr;
+    UIWindow *_mainWindow;
 }
 
 - (void)setPhotos: (NSArray *)photos;

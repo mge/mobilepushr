@@ -11,17 +11,17 @@
 #import <Foundation/Foundation.h>
 
 /*
-	This is a wrapper around The Mac OS X 10.4 and later xattr API that lets
-	you attach arbitrary metadata to a file. Currently it allows querying and
-	changing the attributes of a file, as well as retrieving a list of attribute
-	names.
-	
-	It also includes some conveniences for storing/retrieving UTF8 strings,
-	and objects as XML property lists in addition to the raw data.
-	
-	NOTE: keys (i.e. xattr names) are strings of 127 characters or less and
-	should be made like bundle identifiers, e.g. @"de.zathras.myattribute".
-*/
+ This is a wrapper around The Mac OS X 10.4 and later xattr API that lets
+ you attach arbitrary metadata to a file. Currently it allows querying and
+ changing the attributes of a file, as well as retrieving a list of attribute
+ names.
+ 
+ It also includes some conveniences for storing/retrieving UTF8 strings,
+ and objects as XML property lists in addition to the raw data.
+ 
+ NOTE: keys (i.e. xattr names) are strings of 127 characters or less and
+ should be made like bundle identifiers, e.g. @"de.zathras.myattribute".
+ */
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 // -----------------------------------------------------------------------------
