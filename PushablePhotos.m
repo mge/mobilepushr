@@ -66,22 +66,20 @@
 - (void)promptUserToEditPhotos: (NSArray *)photoList
 {
     _photoList = [photoList retain];
-    UIAlertSheet *alertSheet = [[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)];
-    [alertSheet setTitle: @"Done pushing to Flickr"];
-    [alertSheet setBodyText: @"Would you like to edit the information for your Flickr photos now?"];
-    [alertSheet addButtonWithTitle: @"Edit in Safari"];
-    [alertSheet addButtonWithTitle: @"Do not edit"];
-    [alertSheet setDelegate: self];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"Done pushing to Flickr"];
+    [alertView setMessage: @"Would you like to edit the information for your Flickr photos now?"];
+    [alertView addButtonWithTitle: @"Edit in Safari"];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Do not edit"]];
+    [alertView setDelegate: self];
+    [alertView show];
 }
 
-- (void)alertSheet: (UIAlertSheet *)sheet buttonClicked: (int)button
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [sheet dismiss];
-    [sheet release];
     [_photoList release];
     
-    switch (button) {
+    switch (buttonIndex) {
         case 1: {
             [_pushr openURL: [NSURL URLWithString: [NSString stringWithFormat: @"%@?ids=%@", FLICKR_FINISHED_URL, [_photoList componentsJoinedByString: @","]]]];
             break;

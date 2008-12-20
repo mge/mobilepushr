@@ -58,24 +58,22 @@ typedef enum {
 
 - (void)popupFailureAlertSheet
 {
-    UIAlertSheet *alertSheet = [[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)];
-    [alertSheet setTitle: @"Bad news, everyone"];
-    [alertSheet setBodyText: @"Somewhere, there's a leak in the pipes, and this application's not Plumbr..."];
-    [alertSheet addButtonWithTitle: @"Accept"];
-    [alertSheet setDelegate: self];
-    [alertSheet setRunsModal: YES];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"Bad news, everyone"];
+    [alertView setMessage: @"Somewhere, there's a leak in the pipes, and this application's not Plumbr..."];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Accept"]];
+    [alertView setDelegate: self];
+    [alertView show];
 }
 
 - (void)popupEmptyCameraRollAlertSheet
 {
-    UIAlertSheet *alertSheet = [[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)];
-    [alertSheet setTitle: @"There are no photos to push"];
-    [alertSheet setBodyText: @"Use the Camera application to put photos into the Camera Roll album."];
-    [alertSheet addButtonWithTitle: @"Quit Pushr"];
-    [alertSheet setDelegate: self];
-    [alertSheet setRunsModal: YES];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"There are no photos to push"];
+    [alertView setMessage: @"Use the Camera application to put photos into the Camera Roll album."];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Quit Pushr"]];
+    [alertView setDelegate: self];
+    [alertView show];
 }
 
 - (void)migratePhotoMetadata
@@ -314,12 +312,9 @@ typedef enum {
 
 #pragma mark Delegate functions here
 
-- (void)alertSheet: (UIAlertSheet *)sheet buttonClicked: (int)button
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [sheet dismiss];
-    [sheet release];
-    
-    switch (button) {
+    switch (buttonIndex) {
         default: {
             [self terminate];
         }

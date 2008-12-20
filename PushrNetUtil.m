@@ -47,33 +47,28 @@
 
 - (void)warnUserAboutSlowEDGE
 {
-    UIAlertSheet *alertSheet = [[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)];
-    [alertSheet setTitle: @"This might take a while"];
-    [alertSheet setBodyText: @"You don't seem to have an active WiFi connection, and pushing photos over EDGE is really slow. Still want to push over EDGE?"];
-    [alertSheet addButtonWithTitle: @"Push over EDGE"];
-    [alertSheet addButtonWithTitle: @"Try again later"];
-    [alertSheet setDelegate: self];
-    [alertSheet setRunsModal: YES];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"This might take a while"];
+    [alertView setMessage: @"You don't seem to have an active WiFi connection, and pushing photos over EDGE is really slow. Still want to push over EDGE?"];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Try again later"]];
+    [alertView addButtonWithTitle: @"Push over EDGE"];
+    [alertView setDelegate: self];
+    [alertView show];
 }
 
 - (void)drownWithoutNetwork
 {
-    UIAlertSheet *alertSheet = [[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)];
-    [alertSheet setTitle: @"No network available"];
-    [alertSheet setBodyText: @"Pushr doesn't work if it can't talk to Flickr, and right now, no network connections are active."];
-    [alertSheet addButtonWithTitle: @"Try again later"];
-    [alertSheet setDelegate: _pushr];
-    [alertSheet setRunsModal: YES];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"No network available"];
+    [alertView setMessage: @"Pushr doesn't work if it can't talk to Flickr, and right now, no network connections are active."];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Try again later"]];
+    [alertView setDelegate: _pushr];
+    [alertView show];
 }
 
-- (void) alertSheet: (UIAlertSheet *)sheet buttonClicked: (int)button
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [sheet dismiss];
-    [sheet release];
-    
-    switch (button) {
+    switch (buttonIndex) {
         case 1: {
             NSLog(@"Told the user EDGE was slow, but they want to push anyway...");
             break;

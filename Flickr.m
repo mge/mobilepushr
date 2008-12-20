@@ -37,12 +37,10 @@
     [super dealloc];
 }
 
-#pragma mark UIAlertSheet delegation
-- (void)alertSheet: (UIAlertSheet *)sheet buttonClicked: (int)button
+#pragma mark UIAlertView delegation
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [sheet dismiss];
-    
-    switch (button) {
+    switch (buttonIndex) {
         case 1:
             [_pushr openURL: [self authURL]];
             break;
@@ -236,14 +234,13 @@
  */
 - (void)sendToGrantPermission
 {
-    UIAlertSheet *alertSheet = [[[UIAlertSheet alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 320.0f, 240.0f)] autorelease];
-    [alertSheet setTitle: @"Can't upload to Flickr"];
-    [alertSheet setBodyText: @"Pushr needs your permission to upload pictures to Flickr."];
-    [alertSheet addButtonWithTitle: @"Proceed"];
-    [alertSheet addButtonWithTitle: @"Cancel"];
-    [alertSheet setDelegate: self];
-    [alertSheet setRunsModal: YES];
-    [alertSheet popupAlertAnimated: YES];
+    UIAlertView *alertView = [[[UIAlertView alloc] init] autorelease];
+    [alertView setTitle: @"Can't upload to Flickr"];
+    [alertView setMessage: @"Pushr needs your permission to upload pictures to Flickr."];
+    [alertView addButtonWithTitle: @"Proceed"];
+    [alertView setCancelButtonIndex: [alertView addButtonWithTitle: @"Cancel"]];
+    [alertView setDelegate: self];
+    [alertView show];
     [_settings setBool: TRUE forKey: @"sentToGetToken"];
 }
 
