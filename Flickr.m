@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIAlertSheet.h>
+#import <UIKit/UIKit.h>
 #import "Flickr.h"
 #import "MobilePushr.h"
 #import "ExtendedAttributes.h"

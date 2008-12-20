@@ -9,11 +9,8 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/CDStructures.h>
-#import <GraphicsServices/GraphicsServices.h>
-#import <CoreGraphics/CGColor.h>
-#import <CoreGraphics/CGColorSpace.h>
+#import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
-#import <UIKit/UIColor.h>
 
 #import "MobilePushr.h"
 #import "Flickr.h"

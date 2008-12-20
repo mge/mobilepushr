@@ -7,21 +7,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/CDStructures.h>
 #import <UIKit/UIKit.h>
-#import <UIKit/UIView.h>
-#import <UIKit/UIView-Geometry.h>
-#import <UIKit/UINavigationBar.h>
-#import <UIKit/UITransitionView.h>
-#import <UIKit/UIPreferencesTable.h>
-#import <UIKit/UIPreferencesTextTableCell.h>
-#import <UIKit/UIPreferencesControlTableCell.h>
-#import <UIKit/UIPreferencesTableCell.h>
-#import <UIKit/UISegmentedControl.h>
-#import <UIKit/UISwitchControl.h>
-#import <UIKit/UITextLabel.h>
-#import <UIKit/UIAlertSheet.h>
-#import <UIKit/UIWindow.h>
 
 #import "PushrSettings.h"
 #import "Flickr.h"
